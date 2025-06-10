@@ -1,24 +1,22 @@
-import useAuth from "./AuthContext";
-import Signup from ".//Signup";
-import Signin from ".//Signin";
-import UserProfile from ".//UserProfile";
-export default function profileWrapper() {
-  
+import { useAuth } from "./AuthContext";
+import Signup from "./Signup";
+import Signin from "./Signin";
+import UserProfile from "./UserProfile";
+import "./auth.css";
 
+export default function ProfileWrapper() {
   const { user, logout } = useAuth();
-  //   function logout() {
-  //   setUser(null);
-  // }
+
   return (
-    <>
+    <div className="auth-container">
       {!user ? (
-        <>
+        <div className="auth-buttons">
           <Signup />
           <Signin />
-        </>
+        </div>
       ) : (
-        <UserProfile user={user} onLogout={logout} />
+        <UserProfile user={user} logout={logout} />
       )}
-    </>
+    </div>
   );
 }
